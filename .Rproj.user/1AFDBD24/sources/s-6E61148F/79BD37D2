@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1547002336804.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "79BD37D2",
+    "lastKnownWriteTime" : 8315142649718649600,
+    "last_content_update" : 1547002336804,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "9dca7227a00f4c4d83b9e1bb0a5a388d",
+        "name" : "ten_team_BA_plot",
+        "title" : "ten_team_BA_plot"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

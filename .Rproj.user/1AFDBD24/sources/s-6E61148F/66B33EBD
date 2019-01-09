@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1547002195082.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "66B33EBD",
+    "lastKnownWriteTime" : 8389754659302220320,
+    "last_content_update" : 1547002195082,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "5f67b00a7e124e3580eedcf695f8f304",
+        "name" : "Yankees_WHIP_plot",
+        "title" : "Yankees_WHIP_plot"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

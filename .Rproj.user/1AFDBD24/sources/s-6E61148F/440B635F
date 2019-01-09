@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1547002186304.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "440B635F",
+    "lastKnownWriteTime" : 6,
+    "last_content_update" : 1547002186304,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "68734AD",
+        "caption" : "twenty_year_merge",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=twenty_year_merge&cache_key=68734AD",
+        "displayedObservations" : "4",
+        "environment" : "",
+        "object" : "twenty_year_merge",
+        "preview" : "0",
+        "totalObservations" : "4",
+        "variables" : "1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
