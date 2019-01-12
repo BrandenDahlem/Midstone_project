@@ -13,21 +13,19 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("Baseball Statistical Trends Over Time"),
   
   # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
+       selectInput('bins',
+                   "Select Category:",
+              )
     ),
     
     # Show a plot of the generated distribution
     mainPanel(
-       plotOutput("distPlot")
+       plotOutput("linePlot")
     )
   )
 ))

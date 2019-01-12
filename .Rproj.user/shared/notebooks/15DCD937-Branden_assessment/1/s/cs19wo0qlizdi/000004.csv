@@ -1,0 +1,2 @@
+"0","blue_laser <- laser_big %>% "
+"0","  filter(laser_big$COLOR == 'Blue')"
