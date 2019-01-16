@@ -1,31 +1,40 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
-
-# Define UI for application that draws a histogram
 shinyUI(fluidPage(
   
-  # Application title
-  titlePanel("Baseball Statistical Trends Over Time"),
+  titlePanel("Statistical Trends Over Time"),
   
-  # Sidebar with a slider input for number of bins 
   sidebarLayout(
     sidebarPanel(
-       selectInput('bins',
-                   "Select Category:",
-              )
-    ),
+      selectInput("split", 
+                    label = "Select Variable:",
+                    choices = colnames(big_table),
+                    selected = 'WHIP'
+                  )
+      
+      #sidebarPanel(
+        #selectButton()
+        
+        
+      #)
     
-    # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("linePlot")
-    )
+  
+      ),
+  mainPanel(plotOutput("linePlot"))  
+  ),
+  
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("histo", 
+                     label = "Select Team:",
+                     choices = big_table$YEAR,
+                     selected = '2018',
+                     multiple = TRUE
+      )
+      
+      
+    ),
+    mainPanel(plotOutput("hist_plot"))  
   )
-))
+  
+)
+)

@@ -6,6 +6,7 @@ library(scales)
 library(RColorBrewer)
 library(reshape2)
 library(dplyr)
+library(broom)
 
 twenty_year_merge <- read.csv('~/Desktop/Midstone_project/20_year_merge_test.csv')
 
@@ -56,6 +57,25 @@ class(twenty_year_merge$Tm) = "factor"
 ten_team_WHIP_plot <- ggplot(data = twenty_year_merge, 
   aes(x = twenty_year_merge$YEAR, y = twenty_year_merge$WHIP_normalized, color = twenty_year_merge$Tm)) +
                                geom_line()
+
+
+ten_team_PAY_plot <- ggplot(data = twenty_year_merge, 
+                             aes(x = twenty_year_merge$YEAR, y = twenty_year_merge$PAY, color = twenty_year_merge$Tm)) +
+  geom_line()
+
+show(ten_team_PAY_plot)
+
+PAY_team_plot <- ggplot(data = twenty_year_merge, 
+                             aes(x = twenty_year_merge$Tm, y = twenty_year_merge$PAY, color = twenty_year_merge$CAT)) +
+  geom_line()
+
+show(PAY_team_plot)
+
+Win_team_plot <- ggplot(data = twenty_year_merge, 
+                        aes(x = PAY, color = twenty_year_merge$CAT)) +
+  geom_histogram()
+
+show(Win_team_plot)
 
 ten_team_BA_plot <- ggplot(data = twenty_year_merge, 
                              aes(x = twenty_year_merge$YEAR, y = twenty_year_merge$BA_normalized, color = twenty_year_merge$Tm)) +
@@ -127,3 +147,23 @@ Team_wins_20$AvgWin <- Team_wins_20$RowTotal / 30
 
 Team_wins_20
 
+Win_normal_model <- lm(twenty_year_merge$W_normalized ~ twenty_year_merge$WHIP_normalized + twenty_year_merge$SO9_normalized + twenty_year_merge$PAY_normalized + twenty_year_merge$SB_normalized + twenty_year_merge$BA_normalized + twenty_year_merge$OBP_normalized + twenty_year_merge$SLG_normalized, data = twenty_year_merge)
+
+glance(Win_normal_model)
+
+tidy(Win_normal_model)
+
+Win_model <- lm(twenty_year_merge$W ~ twenty_year_merge$WHIP + twenty_year_merge$SO9 + twenty_year_merge$PAY + twenty_year_merge$SB + twenty_year_merge$BA + twenty_year_merge$OBP + twenty_year_merge$SLG, data = twenty_year_merge)
+
+glance(Win_model)
+
+Win_normal_model
+
+tidy(Win_model)
+
+twenty_year_merge
+
+twenty_year_merge$Win_projection <- (67.799570 + (twenty_year_merge$WHIP * -94.916811) + (twenty_year_merge$SO9 * -0.747263) + (twenty_year_merge$PAY * 0.002457) + (twenty_year_merge$SB * 0.010900) + (twenty_year_merge$BA * 22.442111) + (twenty_year_merge$OBP * 264.069617) + (twenty_year_merge$SLG * 131.312993)
+                   )
+
+twenty_year_merge$deviation <- (twenty_year_merge$Win_projection- twenty_year_merge$W) /(twenty_year_merge$W) * 100
