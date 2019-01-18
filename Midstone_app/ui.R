@@ -1,11 +1,9 @@
 library(shiny)
-shinyUI(fluidPage(collapsible = TRUE, 
-                   fluid = TRUE, 
+shinyUI(navbarPage('Baseball Statistics 1999-2018',
                    theme = shinytheme('superhero'),
-  
-  titlePanel("Statistical Trends Over Time"),
 
-  
+
+  tabPanel('Top/Bottom 5 Time Analysis',
   sidebarLayout(position = 'left',
     sidebarPanel(
       selectInput("dropdown", 
@@ -45,30 +43,49 @@ shinyUI(fluidPage(collapsible = TRUE,
                            ),
                selected = c('NYY','BOS','LgAvg')
                )
-   
-    ),
+     ),
    mainPanel(
     plotOutput("linePlot"))
+  )
   ),
   
-  sidebarLayout(position = 'left',
+tabPanel('Top/Bottom 5 by Variable',
+  sidebarLayout(
     sidebarPanel(
+      
+     selectInput("dropdown2", 
+                 label = "Select Variable:",
+                 c('Wins' = 'W',
+                   'WHIP' = 'WHIP',
+                   'Strikeouts/9 Innings' = 'SO9',
+                   'Payroll(Millions of Dollars)' = 'PAY',
+                   'Stolen Bases' = 'SB',
+                   'Batting Average' = 'BA',
+                   'On Base Percentage' = 'OBP',
+                   'Slugging Percentage' = 'SLG'
+                 ),
+                 selected = 'W'),
+     
      checkboxGroupInput("histo", 
                 label = "Select Team:",
                  choices = c('Atlanta Braves' = 'ATL',
+                           'Boston Red Sox' = 'BOS',
                              'Baltimore Orioles' = 'BAL',
-                             'Boston Red Sox' = 'BOS',
+                             'Kansas City Royals' = 'KCR',
+                             'Los Angeles Dodgers' = 'LAD',
+                             'Miami Marlins' = 'MIA',
                              'New York Yankees' = 'NYY',
-                             'St. Louis Cardinals' = 'STL'
+                             'Pittsburgh Pirates' = 'PIT',
+                             'St. Louis Cardinals' = 'STL',
+                             'Tampa Bay Rays' = 'TBR',
+                             'League Average' = 'LgAvg'
                              ),
-                 selected = c('NYY','ATL'))
+                 selected = c('NYY','BOS','LgAvg'))
     ),
     mainPanel(
       plotOutput("hist_plot"))
-    
-    )
   )
+    )
 )
-    
-
+)
 
