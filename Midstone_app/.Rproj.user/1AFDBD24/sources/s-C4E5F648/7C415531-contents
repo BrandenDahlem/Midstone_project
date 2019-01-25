@@ -10,45 +10,37 @@ library(broom)
 
 twenty_year_merge <- read.csv('~/Desktop/Midstone_project/20_year_merge_test.csv')
 
-twenty_year_merge$color1 <- case_when(twenty_year_merge$Team == 'ATL' ~ '#FF0000',
-                                      twenty_year_merge$Team == 'BAL' ~ '#F96D00',
-                                      twenty_year_merge$Team == 'BOS' ~ '#FF0000',
-                                      twenty_year_merge$Team == 'KCR' ~ '#00ADFE',
-                                      twenty_year_merge$Team == 'LAD' ~ '#00ADFE',
-                                      twenty_year_merge$Team == 'LgAvg' ~ '#B6B300',
-                                      twenty_year_merge$Team == 'MIA' ~ '#008080',
-                                      twenty_year_merge$Team == 'NYY' ~ '#000666',
-                                      twenty_year_merge$Team == 'PIT' ~ '#FFFF00',
-                                      twenty_year_merge$Team == 'STL' ~ '#FF0000',
-                                      twenty_year_merge$Team == 'TBR' ~ '#000666'
-                                      
+twenty_year_merge$color1 <- case_when(twenty_year_merge$Tm == 'ATL' ~ '#FF0000',
+                                      twenty_year_merge$Tm == 'BAL' ~ '#F96D00',
+                                      twenty_year_merge$Tm == 'BOS' ~ '#FF0000',
+                                      twenty_year_merge$Tm == 'KCR' ~ '#00ADFE',
+                                      twenty_year_merge$Tm == 'LAD' ~ '#00ADFE',
+                                      twenty_year_merge$Tm == 'MIA' ~ '#008080',
+                                      twenty_year_merge$Tm == 'NYY' ~ '#000666',
+                                      twenty_year_merge$Tm == 'PIT' ~ '#FFFF00',
+                                      twenty_year_merge$Tm == 'STL' ~ '#FF0000',
+                                      twenty_year_merge$Tm == 'TBR' ~ '#000666',
+                                      twenty_year_merge$Tm == 'LgAvg' ~ '#B6B300'
                                       )
 
-twenty_year_merge$color2 <- case_when(twenty_year_merge$Team == 'ATL' ~ '#000000',
-                                      twenty_year_merge$Team == 'BAL' ~ '#000000',
-                                      twenty_year_merge$Team == 'BOS' ~ '#FFFFFF',
-                                      twenty_year_merge$Team == 'KCR' ~ '#B6B300',
-                                      twenty_year_merge$Team == 'LAD' ~ '#FFFFFF',
-                                      twenty_year_merge$Team == 'LgAvg' ~ '#B6B300',
-                                      twenty_year_merge$Team == 'MIA' ~ '#F96D00',
-                                      twenty_year_merge$Team == 'NYY' ~ '#FFFFFF',
-                                      twenty_year_merge$Team == 'PIT' ~ '#000000',
-                                      twenty_year_merge$Team == 'STL' ~ '#FFFF00',
-                                      twenty_year_merge$Team == 'TBR' ~ '#00ADFE'
-                                      
+twenty_year_merge$color2 <- case_when(twenty_year_merge$Tm == 'ATL' ~ '#000000',
+                                      twenty_year_merge$Tm == 'BAL' ~ '#000000',
+                                      twenty_year_merge$Tm == 'BOS' ~ '#FFFFFF',
+                                      twenty_year_merge$Tm == 'KCR' ~ '#B6B300',
+                                      twenty_year_merge$Tm == 'LAD' ~ '#FFFFFF',
+                                      twenty_year_merge$Tm == 'MIA' ~ '#F96D00',
+                                      twenty_year_merge$Tm == 'NYY' ~ '#FFFFFF',
+                                      twenty_year_merge$Tm == 'PIT' ~ '#000000',
+                                      twenty_year_merge$Tm == 'STL' ~ '#FFFF00',
+                                      twenty_year_merge$Tm == 'TBR' ~ '#00ADFE',
+                                      twenty_year_merge$Tm == 'LgAvg' ~ '#B6B300'
                                       )
 
-
-colnames(twenty_year_merge)[colnames(twenty_year_merge)=="Tm"] <- "Team"
-
-colnames(twenty_year_merge)[colnames(twenty_year_merge)=="CAT"] <- "Category"
-
-colnames(twenty_year_merge)[colnames(twenty_year_merge)=="W"] <- "Wins"
+twenty_year_merge
 
 
 
-
-
+View(twenty_year_merge)
 
 
 drops <- c('W_normalized','WHIP_normalized','SO9_normalized','PAY_normalized','SB_normalized','BA_normalized','OBP_normalized','SLG_normalized')
@@ -59,7 +51,7 @@ saveRDS(twenty_non_normal, file = '~/Desktop/Midstone_project/non_normal_20.rds'
 
 readRDS('non_normal_20.rds')
 
-twenty_year_merge$W_normalized <- ((twenty_year_merge$Wins-47)/(108-47))
+twenty_year_merge$W_normalized <- ((twenty_year_merge$W-47)/(108-47))
 
 twenty_year_merge$WHIP_normalized <- ((twenty_year_merge$WHIP-1.606)/(1.152-1.606))
 
@@ -85,7 +77,7 @@ top_five_teams <- twenty_year_merge[top_five_teams == TRUE, ]
 
 top_five_teams
 
-Yankees <- twenty_year_merge$Team == 'NYY'
+Yankees <- twenty_year_merge$Tm == 'NYY'
 
 Yankees <- twenty_year_merge[Yankees == TRUE, ]
 
@@ -97,17 +89,17 @@ Yankees_WHIP_plot <- ggplot() +
   geom_line(aes(y = Yankees$WHIP_normalized, x = Yankees$YEAR),data = Yankees)
 
 Yankees_win_plot <- ggplot() +
-  geom_line(aes(y = Yankees$Wins, x = Yankees$YEAR), data = Yankees)
+  geom_line(aes(y = Yankees$W, x = Yankees$YEAR), data = Yankees)
 
-class(twenty_year_merge$Team) = "factor"
+class(twenty_year_merge$Tm) = "factor"
 
 ten_team_WHIP_plot <- ggplot(data = twenty_year_merge, 
-  aes(x = twenty_year_merge$YEAR, y = twenty_year_merge$WHIP_normalized, color = twenty_year_merge$Team)) +
+  aes(x = twenty_year_merge$YEAR, y = twenty_year_merge$WHIP_normalized, color = twenty_year_merge$Tm)) +
                                geom_line()
 
 
 ten_team_PAY_plot <- ggplot(data = twenty_year_merge, 
-                             aes(x = twenty_year_merge$YEAR, y = twenty_year_merge$PAY, color = twenty_year_merge$Team)) +
+                             aes(x = twenty_year_merge$YEAR, y = twenty_year_merge$PAY, color = twenty_year_merge$Tm)) +
   geom_line()
 
 show(ten_team_PAY_plot)
@@ -125,7 +117,7 @@ Win_team_plot <- ggplot(data = twenty_year_merge,
 show(Win_team_plot)
 
 ten_team_BA_plot <- ggplot(data = twenty_year_merge, 
-                             aes(x = twenty_year_merge$YEAR, y = twenty_year_merge$BA_normalized, color = twenty_year_merge$Team)) +
+                             aes(x = twenty_year_merge$YEAR, y = twenty_year_merge$BA_normalized, color = twenty_year_merge$Tm)) +
   geom_line()
 
 show(ten_team_WHIP_plot)

@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548370274632.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1768281023",
+    "id" : "AF4643F3",
+    "lastKnownWriteTime" : 1548381224,
+    "last_content_update" : 1548381224699,
+    "path" : "~/Desktop/Midstone_project/Midstone_app/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "cursorPosition" : "18,23",
+        "scrollLine" : "3",
+        "source_window_id" : ""
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,12 +1,12 @@
 library(shiny)
 shinyUI(navbarPage('Baseball Statistics 1999-2018',
-                   theme = shinytheme('superhero'),
+                   theme = shinytheme('sandstone'),
 
 
   tabPanel('Time Analysis by Team',
   sidebarLayout(position = 'left',
     sidebarPanel(
-      p(h3('Individual Team comparisons,1999-2018')
+      p(h3('Statistical comparisons of teams over the past 20 seasons, based on greatest and least number of wins')
         ,h6('Data sourced from :"https://www.baseball-reference.com/leagues/MLB/"
       And "https://www.spotrac.com/mlb/payroll/"')),
       selectInput("dropdown", 
@@ -19,7 +19,7 @@ shinyUI(navbarPage('Baseball Statistics 1999-2018',
                       'Batting Average' = 'BA',
                       'On Base Percentage' = 'OBP',
                       'Slugging Percentage' = 'SLG'),
-                  selected = 'SO9'
+                  selected = '-WHIP'
                   ),
       
      sliderInput("slider",
@@ -45,7 +45,7 @@ shinyUI(navbarPage('Baseball Statistics 1999-2018',
                            'Tampa Bay Rays' = 'TBR',
                            'League Average' = 'LgAvg'
                            ),
-               selected = c('NYY','BOS','MIA','PIT','ATL','BAL','KCR','LAD','STL','TBR')
+               selected = c('NYY','BOS','MIA','PIT')
                )
      ),
    mainPanel(
@@ -56,9 +56,7 @@ shinyUI(navbarPage('Baseball Statistics 1999-2018',
 tabPanel('Top 5/Bottom 5 Time Analysis',
   sidebarLayout(
     sidebarPanel(
-      p(h3('Team comparisons categorized by top and bottom 5 lists, 1999-2018')
-        ,h6('Data sourced from :"https://www.baseball-reference.com/leagues/MLB/"
-            And "https://www.spotrac.com/mlb/payroll/"')),
+     
       selectInput("dropdown2", 
                  label = "Select Variable:",
                  c('Wins' = 'W',
@@ -70,7 +68,7 @@ tabPanel('Top 5/Bottom 5 Time Analysis',
                    'On Base Percentage' = 'OBP',
                    'Slugging Percentage' = 'SLG'
                  ),
-                 selected = 'SO9'),
+                 selected = '-WHIP'),
       sliderInput("slider2",
                   label = "Select Year:",
                   min = 1999,
@@ -81,22 +79,36 @@ tabPanel('Top 5/Bottom 5 Time Analysis',
       ),
      
      checkboxGroupInput("histo1", 
-                label = "All Teams:",
-                 choices = c('Atlanta Braves(Top 5)' = 'ATL',
-                             'Boston Red Sox(Top 5)' = 'BOS',
-                             'Los Angeles Dodgers(Top 5)' = 'LAD',
-                             'New York Yankees(Top 5)' = 'NYY',
-                             'St. Louis Cardinals(Top 5)' = 'STL',
-                             'League Average' = 'LgAvg',
-                             'Baltimore Orioles(Bottom 5)' = 'BAL',
-                             'Kansas City Royals(Bottom 5)' = 'KCR',
-                             'Miami Marlins(Bottom 5)' = 'MIA',
-                             'Pittsburgh Pirates(Bottom 5)' = 'PIT',
-                             'Tampa Bay Rays(Bottom 5)' = 'TBR'
+                label = "Top 5 Teams:",
+                 choices = c('Atlanta Braves' = 'ATL',
+                             'Boston Red Sox' = 'BOS',
+                             'Los Angeles Dodgers' = 'LAD',
+                             'New York Yankees' = 'NYY',
+                             'St. Louis Cardinals' = 'STL',
+                             'League Average' = 'LgAvg'
                              ),
-                 selected = c('NYY','BOS','MIA','PIT','ATL','BAL','KCR','LAD','STL','TBR'))
-     ),  
-  mainPanel(
+                 selected = c('NYY','BOS','LgAvg'),
+                label = "Bottom 5 Teams:",
+                choices = c(    checkboxGroupInput("histo1", 
+                                                   label = "Top 5 Teams:",
+                                                   choices = c('Atlanta Braves' = 'ATL',
+                                                               'Boston Red Sox' = 'BOS',
+                                                               'Baltimore Orioles' = 'BAL',
+                                                               'Kansas City Royals' = 'KCR',
+                                                               'Los Angeles Dodgers' = 'LAD',
+                                                               'Miami Marlins' = 'MIA',
+                                                               'New York Yankees' = 'NYY',
+                                                               'Pittsburgh Pirates' = 'PIT',
+                                                               'St. Louis Cardinals' = 'STL',
+                                                               'Tampa Bay Rays' = 'TBR',
+                                                               'League Average' = 'LgAvg'
+                                                   ),
+                                                   selected = c('NYY','BOS','LgAvg','MIA','PIT'))
+                ),)
+                
+                ),
+  ),
+    mainPanel(
       plotOutput("hist_plot"))
   )
 ),
@@ -104,9 +116,6 @@ tabPanel('Top 5/Bottom 5 Time Analysis',
 tabPanel('Statistic vs. Win Scatterplot',
        sidebarLayout(position = 'left',
                       sidebarPanel(
-                        p(h3('Scatterplot showing the relationship between wins and the other variables')
-                          ,h6('Data sourced from :"https://www.baseball-reference.com/leagues/MLB/"
-                              And "https://www.spotrac.com/mlb/payroll/"')),
                         selectInput("scatterdrop", 
                                                label = "Select Comparison:",
                                                c('WHIP vs. Wins' = '-WHIP',
@@ -116,7 +125,7 @@ tabPanel('Statistic vs. Win Scatterplot',
                                                  'Batting Average vs. Wins' = 'BA',
                                                  'On Base Percentage vs. Wins' = 'OBP',
                                                  'Slugging Percentage vs. Wins' = 'SLG'),
-                                               selected = 'SO9'
+                                               selected = '-WHIP'
                                     ),
                         
                        selectInput("scatteryear", 
@@ -157,7 +166,7 @@ tabPanel('Statistic vs. Win Scatterplot',
                                                'St. Louis Cardinals' = 'STL',
                                                'Tampa Bay Rays' = 'TBR',
                                                'League Average' = 'LgAvg'),
-                                   selected = c('NYY','BOS','MIA','PIT','ATL','BAL','KCR','LAD','STL','TBR'),
+                                   selected = c('NYY','BOS','MIA','PIT'),
                                    multiple = TRUE
                        )
            ),
@@ -168,5 +177,6 @@ tabPanel('Statistic vs. Win Scatterplot',
 tabPanel('Data Table',
 mainPanel(
   dataTableOutput('table')))
+
 )
 )
