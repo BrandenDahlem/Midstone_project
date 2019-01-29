@@ -6,7 +6,7 @@ shinyUI(navbarPage('Baseball Statistics 1999-2018',
   tabPanel('Time Analysis by Team',
   sidebarLayout(position = 'left',
     sidebarPanel(
-      p(h3('Individual Team comparisons,1999-2018')
+      p(h3('Team Comparisons, 1999-2018')
         ,h6('Data sourced from :"https://www.baseball-reference.com/leagues/MLB/"
       And "https://www.spotrac.com/mlb/payroll/"')),
       selectInput("dropdown", 
@@ -34,21 +34,25 @@ shinyUI(navbarPage('Baseball Statistics 1999-2018',
      checkboxGroupInput("group2",
                label = "Select Team:",
                choices = c('Atlanta Braves' = 'ATL',
-                           'Boston Red Sox' = 'BOS',
                            'Baltimore Orioles' = 'BAL',
+                           'Boston Red Sox' = 'BOS',
                            'Kansas City Royals' = 'KCR',
                            'Los Angeles Dodgers' = 'LAD',
+                           'League Average' = 'LgAvg',
                            'Miami Marlins' = 'MIA',
                            'New York Yankees' = 'NYY',
                            'Pittsburgh Pirates' = 'PIT',
                            'St. Louis Cardinals' = 'STL',
-                           'Tampa Bay Rays' = 'TBR',
-                           'League Average' = 'LgAvg'
+                           'Tampa Bay Rays' = 'TBR'
                            ),
-               selected = c('NYY','BOS','MIA','PIT','ATL','BAL','KCR','LAD','STL','TBR')
+               selected = c('BOS','KCR','LAD','LgAvg','MIA','NYY','STL')
                )
-     ),
+    ),
    mainPanel(
+     br(),
+     br(),
+     br(),
+     br(), br(),
     plotOutput("linePlot"))
   )
   ),
@@ -56,7 +60,7 @@ shinyUI(navbarPage('Baseball Statistics 1999-2018',
 tabPanel('Top 5/Bottom 5 Time Analysis',
   sidebarLayout(
     sidebarPanel(
-      p(h3('Team comparisons categorized by top and bottom 5 lists, 1999-2018')
+      p(h3('Team comparisons categorized by top and bottom 5 lists,    1999-2018')
         ,h6('Data sourced from :"https://www.baseball-reference.com/leagues/MLB/"
             And "https://www.spotrac.com/mlb/payroll/"')),
       selectInput("dropdown2", 
@@ -94,9 +98,13 @@ tabPanel('Top 5/Bottom 5 Time Analysis',
                              'Pittsburgh Pirates(Bottom 5)' = 'PIT',
                              'Tampa Bay Rays(Bottom 5)' = 'TBR'
                              ),
-                 selected = c('NYY','BOS','MIA','PIT','ATL','BAL','KCR','LAD','STL','TBR'))
+                 selected = c('NYY','BOS','BAL','KCR','LAD','TBR'))
      ),  
   mainPanel(
+    br(),
+    br(),
+    br(),
+    br(), br(),
       plotOutput("hist_plot"))
   )
 ),
@@ -104,7 +112,7 @@ tabPanel('Top 5/Bottom 5 Time Analysis',
 tabPanel('Statistic vs. Win Scatterplot',
        sidebarLayout(position = 'left',
                       sidebarPanel(
-                        p(h3('Scatterplot showing the relationship between wins and the other variables')
+                        p(h3('Scatterplot displaying relationship between wins and the other variables')
                           ,h6('Data sourced from :"https://www.baseball-reference.com/leagues/MLB/"
                               And "https://www.spotrac.com/mlb/payroll/"')),
                         selectInput("scatterdrop", 
@@ -151,17 +159,20 @@ tabPanel('Statistic vs. Win Scatterplot',
                                                'Boston Red Sox' = 'BOS',
                                                'Kansas City Royals' = 'KCR',
                                                'Los Angeles Dodgers' = 'LAD',
+                                               'League Average' = 'LgAvg',
                                                'Miami Marlins' = 'MIA',
                                                'New York Yankees' = 'NYY',
                                                'Pittsburgh Pirates' = 'PIT',
                                                'St. Louis Cardinals' = 'STL',
-                                               'Tampa Bay Rays' = 'TBR',
-                                               'League Average' = 'LgAvg'),
-                                   selected = c('NYY','BOS','MIA','PIT','ATL','BAL','KCR','LAD','STL','TBR'),
+                                               'Tampa Bay Rays' = 'TBR'
+                                               ),
+                                   selected = c('BOS','KCR','LAD','NYY','PIT','STL'),
                                    multiple = TRUE
                        )
            ),
   mainPanel(
+    br(),
+    br(),
      plotOutput('scatter_plot'))
 )
 ),

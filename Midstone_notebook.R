@@ -10,40 +10,25 @@ library(broom)
 
 twenty_year_merge <- read.csv('~/Desktop/Midstone_project/20_year_merge_test.csv')
 
-twenty_year_merge$color1 <- case_when(twenty_year_merge$Team == 'ATL' ~ '#FF0000',
-                                      twenty_year_merge$Team == 'BAL' ~ '#F96D00',
-                                      twenty_year_merge$Team == 'BOS' ~ '#FF0000',
-                                      twenty_year_merge$Team == 'KCR' ~ '#00ADFE',
-                                      twenty_year_merge$Team == 'LAD' ~ '#00ADFE',
-                                      twenty_year_merge$Team == 'LgAvg' ~ '#B6B300',
-                                      twenty_year_merge$Team == 'MIA' ~ '#008080',
-                                      twenty_year_merge$Team == 'NYY' ~ '#000666',
-                                      twenty_year_merge$Team == 'PIT' ~ '#FFFF00',
-                                      twenty_year_merge$Team == 'STL' ~ '#FF0000',
-                                      twenty_year_merge$Team == 'TBR' ~ '#000666'
-                                      
-                                      )
-
-twenty_year_merge$color2 <- case_when(twenty_year_merge$Team == 'ATL' ~ '#000000',
-                                      twenty_year_merge$Team == 'BAL' ~ '#000000',
-                                      twenty_year_merge$Team == 'BOS' ~ '#FFFFFF',
-                                      twenty_year_merge$Team == 'KCR' ~ '#B6B300',
-                                      twenty_year_merge$Team == 'LAD' ~ '#FFFFFF',
-                                      twenty_year_merge$Team == 'LgAvg' ~ '#B6B300',
-                                      twenty_year_merge$Team == 'MIA' ~ '#F96D00',
-                                      twenty_year_merge$Team == 'NYY' ~ '#FFFFFF',
-                                      twenty_year_merge$Team == 'PIT' ~ '#000000',
-                                      twenty_year_merge$Team == 'STL' ~ '#FFFF00',
-                                      twenty_year_merge$Team == 'TBR' ~ '#00ADFE'
-                                      
-                                      )
-
-
 colnames(twenty_year_merge)[colnames(twenty_year_merge)=="Tm"] <- "Team"
 
 colnames(twenty_year_merge)[colnames(twenty_year_merge)=="CAT"] <- "Category"
 
 colnames(twenty_year_merge)[colnames(twenty_year_merge)=="W"] <- "Wins"
+
+twenty_year_merge$color1 <- case_when(twenty_year_merge$Team == 'ATL' ~ 'Dark Red',
+                                      twenty_year_merge$Team == 'BAL' ~ 'Orange',
+                                      twenty_year_merge$Team == 'BOS' ~ 'Red',
+                                      twenty_year_merge$Team == 'KCR' ~ 'Light Grey',
+                                      twenty_year_merge$Team == 'LAD' ~ 'Dodgerblue',
+                                      twenty_year_merge$Team == 'LgAvg' ~ 'Gold',
+                                      twenty_year_merge$Team == 'MIA' ~ 'DARKTURQUOISE',
+                                      twenty_year_merge$Team == 'NYY' ~ 'Navy Blue',
+                                      twenty_year_merge$Team == 'PIT' ~ 'Black',
+                                      twenty_year_merge$Team == 'STL' ~ 'Yellow',
+                                      twenty_year_merge$Team == 'TBR' ~ 'Powderblue'
+                                      
+)
 
 
 
@@ -214,3 +199,4 @@ twenty_year_merge$Win_projection <- (67.799570 + (twenty_year_merge$WHIP * -94.9
                    )
 
 twenty_year_merge$deviation <- (twenty_year_merge$Win_projection- twenty_year_merge$W) /(twenty_year_merge$W) * 100
+
