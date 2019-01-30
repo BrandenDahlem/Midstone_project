@@ -4,13 +4,16 @@ library(shiny)
 library(shinydashboard)
 library(shinythemes)
 library(readr)
+library(magrittr)
 library(ggplot2)
 library(dplyr)
 library(broom)
+library(assertive, warn.conflicts = FALSE)
+  
 
-big_table <- readRDS("~/Desktop/Midstone_project/Midstone_app/twenty_year_merge.rds")
+big_table <- readRDS("./twenty_year_merge.rds")
 
-non_normal_table <- readRDS("~/Desktop/Midstone_project/non_normal_20.rds")
+non_normal_table <- readRDS("./non_normal_20.rds")
 
 Team_list <- c('Atlanta Braves', 'Baltimore Orioles', 'Boston Red Sox', 'Kansas City Royals', 'Los Angeles Dodgers', 'League Average', 'Miami Marlins', 'New York Yankees', 'Pittsburgh Pirates', 'St. Louis Cardinals', 'Tampa Bay Rays')
 

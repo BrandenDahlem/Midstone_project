@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1548805727164.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "91555E4",
+    "lastKnownWriteTime" : 1548803229,
+    "last_content_update" : 1548803229,
+    "path" : "~/Desktop/Midstone_project/Baseball_stats_explorer/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "cursorPosition" : "183,24",
+        "scrollLine" : "159"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

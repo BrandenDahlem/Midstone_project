@@ -1,4 +1,7 @@
 library(shiny)
+library(shinythemes)
+library(dplyr)
+library(magrittr)
 shinyUI(navbarPage('Baseball Statistics 1999-2018',
                    theme = shinytheme('superhero'),
 
@@ -178,6 +181,6 @@ tabPanel('Statistic vs. Win Scatterplot',
 ),
 tabPanel('Data Table',
 mainPanel(
-  dataTableOutput('table')))
+  shiny::dataTableOutput('table')))
 )
 )

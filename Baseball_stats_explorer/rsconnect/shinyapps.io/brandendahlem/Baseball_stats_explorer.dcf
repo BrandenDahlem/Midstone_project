@@ -1,0 +1,12 @@
+name: Baseball_stats_explorer
+title: Baseball_stats_explorer
+username:
+account: brandendahlem
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 675071
+bundleId: 1844969
+url: https://brandendahlem.shinyapps.io/Baseball_stats_explorer/
+when: 1548816589.28501
+asMultiple: FALSE
+asStatic: FALSE

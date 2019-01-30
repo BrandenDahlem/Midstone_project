@@ -1,5 +1,8 @@
 library(shiny)
 library(ggplot2)
+library(shinythemes)
+library(magrittr)
+library(dplyr)
 
 shinyServer(function(input, output) {
  
@@ -12,8 +15,8 @@ shinyServer(function(input, output) {
     years <- seq(input$slider[1], input$slider[2], by = 1)
     
     select_table <- big_table %>% 
-      filter(Team %in% input$group2) %>% 
-      filter(YEAR %in% years) 
+      dplyr::filter(Team %in% input$group2) %>% 
+      dplyr::filter(YEAR %in% years) 
       
     ggplot(data = select_table, aes_string(y = measure, x = 'YEAR', group = 'Team', col = 'color1')) +
       scale_color_identity(labels = Team_list, breaks = Color_list, guide = 'legend', aesthetics = c('color')) +
@@ -45,8 +48,8 @@ shinyServer(function(input, output) {
 
     
     histo_table <- big_table %>% 
-      filter(Team %in% input$histo1) %>% 
-      filter(YEAR %in% years2)
+      dplyr::filter(Team %in% input$histo1) %>% 
+      dplyr::filter(YEAR %in% years2)
     
    ggplot(data = histo_table, aes_string(y = measure2, x = 'YEAR', group = 'Team', col = 'Category')) +
       theme(axis.title.x = element_text(size = 22.0, face = 'bold',family = 'Arial')) +
@@ -75,8 +78,8 @@ shinyServer(function(input, output) {
   scattermeasure <- input$scatterdrop
   
   scatter_table <- big_table %>% 
-      filter(YEAR %in% input$scatteryear) %>% 
-      filter(Team %in% input$scatterteam)
+      dplyr::filter(YEAR %in% input$scatteryear) %>% 
+      dplyr::filter(Team %in% input$scatterteam)
    
    ggplot(scatter_table, aes_string(y = 'Wins', x = scattermeasure, group = 'Team', col = 'color1')) +
      scale_color_identity(labels = Team_list, breaks = Color_list, guide = 'legend', aesthetics = c('color')) +

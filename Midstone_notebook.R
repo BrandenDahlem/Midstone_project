@@ -16,6 +16,9 @@ colnames(twenty_year_merge)[colnames(twenty_year_merge)=="CAT"] <- "Category"
 
 colnames(twenty_year_merge)[colnames(twenty_year_merge)=="W"] <- "Wins"
 
+
+
+
 twenty_year_merge$color1 <- case_when(twenty_year_merge$Team == 'ATL' ~ 'Dark Red',
                                       twenty_year_merge$Team == 'BAL' ~ 'Orange',
                                       twenty_year_merge$Team == 'BOS' ~ 'Red',
@@ -30,7 +33,7 @@ twenty_year_merge$color1 <- case_when(twenty_year_merge$Team == 'ATL' ~ 'Dark Re
                                       
 )
 
-
+colnames(twenty_year_merge)[colnames(twenty_year_merge)=="color1"] <- "Team Color"
 
 
 
@@ -40,7 +43,7 @@ drops <- c('W_normalized','WHIP_normalized','SO9_normalized','PAY_normalized','S
 
 twenty_non_normal <- twenty_year_merge[ , !(names(twenty_year_merge) %in% drops)]
 
-saveRDS(twenty_non_normal, file = '~/Desktop/Midstone_project/non_normal_20.rds')
+saveRDS(twenty_non_normal, file = '~/Desktop/Midstone_project/Midstone_app/non_normal_20.rds')
 
 readRDS('non_normal_20.rds')
 
